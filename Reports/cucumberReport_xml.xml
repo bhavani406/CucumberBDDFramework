@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="19.822" tests="3" skipped="0" failures="1" errors="0">
+<testcase classname="Login" name="Successful Login with Valid Credentials" time="8.432">
+<system-out><![CDATA[
+Given User Launch Chrome browser............................................passed
+When User opens URL "https://admin-demo.nopcommerce.com/login"..............passed
+And User enters Email as "admin@yourstore.com" and Password as "admin"......passed
+And Click on Login..........................................................passed
+Then Page Title should be "Dashboard / nopCommerce administration"..........passed
+When User click on Log out link.............................................passed
+Then Page Title should be "Your store. Login"...............................passed
+And close browser...........................................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Login" name="Successful Login with Valid Credentials - Credentials - Example #1.1" time="7.166">
+<system-out><![CDATA[
+Given User Launch Chrome browser............................................passed
+When User opens URL "https://admin-demo.nopcommerce.com/login"..............passed
+And User enters Email as "admin@yourstore.com" and Password as "admin"......passed
+And Click on Login..........................................................passed
+Then Page Title should be "Dashboard / nopCommerce administration"..........passed
+]]></system-out>
+</testcase>
+<testcase classname="Login" name="Successful Login with Valid Credentials - Credentials - Example #1.2" time="3.997">
+<failure type="org.junit.ComparisonFailure" message="expected:&lt;[Your store. Logi]n&gt; but was:&lt;[Dashboard / nopCommerce administratio]n&gt;">
+<![CDATA[org.junit.ComparisonFailure: expected:<[Your store. Logi]n> but was:<[Dashboard / nopCommerce administratio]n>
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at StepDefinition.StepDefLogin.page_title_should_be(StepDefLogin.java:80)
+	at ✽.Page Title should be "Dashboard / nopCommerce administration"(file:///C:/Users/Bhavani_Bomma/eclipse-workspace/CucumberFrameworkTask/./Features/login.feature:19)
+]]>
+</failure>
+<system-out><![CDATA[
+Given User Launch Chrome browser............................................passed
+When User opens URL "https://admin-demo.nopcommerce.com/login"..............passed
+And User enters Email as "test@yourstore.com" and Password as "admin".......passed
+And Click on Login..........................................................passed
+Then Page Title should be "Dashboard / nopCommerce administration"..........failed
+]]></system-out>
+</testcase>
+</testsuite>
