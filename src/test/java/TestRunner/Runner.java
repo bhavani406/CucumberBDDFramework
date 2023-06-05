@@ -14,7 +14,7 @@ import io.cucumber.junit.CucumberOptions;
 		dryRun = false,
 		monochrome = true,
 		plugin = {"pretty","html:Reports/Report_newCustomer.html"},
-		tags="@regression1"
+		tags="@sanity or @regression1"
 		)
 //"json:Reports/cucumberReport_json.json","junit:Reports/cucumberReport_xml.xml
 public class Runner{

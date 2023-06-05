@@ -30,7 +30,7 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-
+import Factory.DriverFactory;
 
 public class StepDef extends BaseClass{
 	//WebDriver driver=null;
@@ -40,6 +40,7 @@ public class StepDef extends BaseClass{
 	//	it and injecting at setUp and we can assign it to our scenario object sc and this we can use only with 
 	//@before @after
 	TestContextUI testContextUI;
+	WebDriver driver;
 	Scenario scn;
 
 	public StepDef(TestContextUI testContextUI) {
@@ -47,44 +48,30 @@ public class StepDef extends BaseClass{
 	}
 	@Before
 	public void setUp() {
-//		logger=LogManager.getLogger("StepDef");
-//		logger.info("Launch the browser");
-//		System.out.println("Set up of all sessions");
-//		ChromeOptions option = new ChromeOptions();
-//		option.addArguments("--remote-allow-origins=*");
-//		WebDriverManager.chromedriver().setup();
-//		WebDriver driver = new ChromeDriver(option);
-//		testContextUI.setDriverC(driver);
-//		testContextUI.intializePageObjects(driver);
 		
 		ReadConfig.getProperties();
+		logger=LogManager.getLogger("StepDef");
+		logger.info("Launch the browser");
+		System.out.println("Set up of all sessions");
+
 		if(browserName.equalsIgnoreCase("chrome")) {
-			logger=LogManager.getLogger("StepDef");
-			logger.info("Launch the browser");
-			System.out.println("Set up of all sessions");
-			ChromeOptions option = new ChromeOptions();
-			option.addArguments("--remote-allow-origins=*");
-			WebDriverManager.chromedriver().setup();
-			WebDriver driver = new ChromeDriver(option);
-			testContextUI.setDriverC(driver);
-			testContextUI.intializePageObjects(driver);
+			
+			driver = new DriverFactory().createInstance(browserName);		   
+			
 		}
 		else if(browserName.equalsIgnoreCase("firefox")) {
-			System.setProperty("webdriver.gecko.driver","./drivers/chromedriver.exe");
-			WebDriver driver = new FirefoxDriver();
+			
+			driver = new DriverFactory().createInstance(browserName);		   
+			
 		}
-		else if(browserName.equalsIgnoreCase("msedge")) {
-			logger=LogManager.getLogger("StepDef");
-			logger.info("Launch the browser");
-			EdgeOptions option = new EdgeOptions();
-			option.addArguments("--remote-allow-origins=*");
-			WebDriverManager.edgedriver().setup();
-			@SuppressWarnings("deprecation")
-			WebDriver driver = new EdgeDriver(option);
-			testContextUI.setDriverC(driver);
-			testContextUI.intializePageObjects(driver);
+		else if(browserName.equalsIgnoreCase("edge")) {
+			
+			driver = new DriverFactory().createInstance(browserName);		   
+			
 		}
-
+		
+		testContextUI.setDriverC(driver);
+		testContextUI.intializePageObjects(driver);
 	}
 	@After
 	public void tearDown(Scenario sc) {
